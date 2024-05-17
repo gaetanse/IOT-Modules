@@ -13,6 +13,6 @@ A compléter ...................................
 - [] Création d’un script de génération automatique d’état des modules.
 - [] Les modules doivent générer des données numériques sur la mesure qu’ils effectuent (température, vitesse, etc.) et en stocker l’historique dans une base de données. Les modules peuvent tomber en panne puis refonctionner, tout cela de façon aléatoire. La génération de l’historique doit continuer lors de la navigation sur l’interface web de votre test.
 
-[screen-capture.webm]()
+Vidéo.mp4
 
 Créer en une semaine.

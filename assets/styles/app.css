@@ -1,3 +1,15 @@
+.center {
+    background-color: #363d4b;
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 15px;
+}
+
 body {
-    background-color: skyblue;
+    background-color: #282c34;
 }

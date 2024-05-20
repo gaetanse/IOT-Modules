@@ -6,24 +6,30 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Module;
+use App\Form\ModuleType;
+use Symfony\Component\HttpFoundation\Request;
 
 class AddModuleController extends AbstractController
 {
     #[Route('/add/module', name: 'add a module')]
-    public function number(EntityManagerInterface $entityManager): Response
+    public function number(EntityManagerInterface $entityManager, Request $request): Response
     {
-        $number = random_int(0, 100);
 
         $module = new Module();
-        $module->setName('Camera');
+        $form = $this->createForm(ModuleType::class, $module);
+        $form->handleRequest($request);
 
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($module);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $valid_module = $form->getData();
+            $entityManager->persist($valid_module);
+            $entityManager->flush();
+            $this->addFlash('success', 'Module added !');
+            return $this->redirectToRoute('add a module');
+        }
 
         return $this->render('add_module.html.twig', [
+            "form_add_module" => $form,
         ]);
 
     }

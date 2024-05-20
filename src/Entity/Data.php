@@ -16,6 +16,9 @@ class Data
     #[ORM\Column]
     private ?int $valeur = null;
 
+    #[ORM\Column]
+    private ?int $type = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Data
     public function setValeur(int $valeur): static
     {
         $this->valeur = $valeur;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

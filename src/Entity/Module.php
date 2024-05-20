@@ -16,6 +16,9 @@ class Module
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column]
+    private ?bool $isDown = true;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Module
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getIsDown(): ?bool
+    {
+        return $this->isDown;
+    }
+
+    public function setIsDown(bool $isDown): static
+    {
+        $this->isDown = $isDown;
 
         return $this;
     }

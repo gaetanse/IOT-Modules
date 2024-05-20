@@ -5,18 +5,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\Data;
+use App\Entity\Module;
 
-class DataController extends AbstractController
+class ModuleController extends AbstractController
 {
-    #[Route('/datas', name: 'datas')]
+    #[Route('/modules', name: 'modules')]
     public function number(EntityManagerInterface $entityManager): Response
     {
 
-        $datas = $entityManager->getRepository(Data::class)->findAll();
-        
-        return $this->render('data.html.twig', [
-            'datas' => $datas,
+        $modules = $entityManager->getRepository(Module::class)->findAll();
+        $datas = [];
+
+        return $this->render('module.html.twig', [
+            'modules' => $modules,
         ]);
 
     }

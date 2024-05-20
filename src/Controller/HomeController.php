@@ -11,6 +11,7 @@ use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\Process\PhpProcess;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Module;
+use App\Entity\Data;
 
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -25,28 +26,13 @@ class HomeController extends AbstractController
     {
         $number = random_int(1, 5);
 
-        $loaded = false;
-
-        //$modules = ['aa','bb'];
-
-        /*
-        $process = new PhpProcess('<?php 
-        echo "start";
-        sleep(1);
-        echo "end";
-        ?>');
-        $process->run();
-        if ($process->isSuccessful()) {
-            $modules = ["aa","bb", "cc"]; 
-        }
-        $content = $process->getOutput()."\n";
-        */
-
         $modules = $entityManager->getRepository(Module::class)->findAll();
+        $datas = $entityManager->getRepository(Data::class)->findAll();
 
         return $this->render('home.html.twig', [
             'number' => $number,
             'modules' => $modules,
+            'datas' => $datas,
         ]);
 
     }

@@ -36,12 +36,12 @@ class Data
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType(): ?int
     {
         return $this->type;
     }
 
-    public function setType(string $type): static
+    public function setType(int $type): static
     {
         $this->type = $type;
 

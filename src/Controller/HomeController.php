@@ -27,63 +27,24 @@ class HomeController extends AbstractController
         $number = random_int(1, 5);
 
         $modules = $entityManager->getRepository(Module::class)->findAll();
+
+        $modulesDataLength = [];
+        for ($i = 0; $i <= count($modules)-1; $i++) {
+            $dataByModuleAndType = $entityManager->getRepository(Data::class)->findBy([
+                'type' => $modules[$i]->getId()
+            ]);
+            $modulesDataLength[] = count($dataByModuleAndType);
+        }
+
         $datas = $entityManager->getRepository(Data::class)->findAll();
 
         return $this->render('home.html.twig', [
             'number' => $number,
             'modules' => $modules,
+            'modulesDataLength' => $modulesDataLength,
             'datas' => $datas,
         ]);
 
     }
 
-    #[Route('/add_test', name: 'test')]
-    public function add_data(KernelInterface $kernel): Response
-    {
-
-        /*
-        $process = new PhpProcess('<?php 
-        sleep(10);
-        echo "Hello World"; 
-        ?>');
-        $process->run();
-        $content = $process->getOutput()."\n";
-        */
-
-        /*$process = new Process(['php bin/console list']);
-        $process->run();
-        $valuereturn = $process->getOutput();
-
-        // executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        $number = random_int(0, 100);
-        $modules = ['aa','bb'];
-        return $this->render('home.html.twig', [
-            'number' => $valuereturn,
-            'modules' => $modules,
-        ]);*/
-
-        //$application = new Application('echo', '1.0.0');
-        /*$application = new Application($kernel);
-        $application->setAutoExit(false);
-
-        $input = new ArrayInput([
-            //'command' => 'debug:twig',
-            'command' => 'echo 1.0',
-        ]);
-
-        // You can use NullOutput() if you don't need the output
-        $output = new BufferedOutput();
-        $application->run($input, $output);
-
-        // return the output, don't use if you used NullOutput()
-        $content = $output->fetch();*/
-
-        // return new Response(""), if you used NullOutput()
-        return new Response($content);
-
-    }
 }

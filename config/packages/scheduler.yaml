@@ -1,0 +1,8 @@
+framework:
+    scheduler:
+        # Enable the Scheduler component
+        enabled: true
+
+        # Choose a strategy for executing scheduled tasks
+        # Available options: single_task, custom_commands, background_tasks
+        #strategy: background_tasks

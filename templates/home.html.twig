@@ -25,14 +25,14 @@
                 <div class="col">
                     {% if value.getIsDown() %}
                         <div class="p-4 border bg-danger" style="border-radius: 10px;">
-                            {{ value.getName() }} (datas : ???)</p>
-                            <a href="/modules/id" class="btn btn-dark">Details</a>
+                            {{ value.getName() }} (datas : {{ modulesDataLength[loop.index-1] }})</p>
+                            <a href="/module/{{ value.getId() }}" class="btn btn-dark">Details</a>
                         </div>
                     {% endif %}
                     {% if not value.getIsDown() %}
                         <div class="p-4 border bg-info" style="border-radius: 10px;">
-                            {{ value.getName() }} (datas : ???)</p>
-                            <a href="/modules/id" class="btn btn-dark">Details</a>
+                            {{ value.getName() }} (datas : {{ modulesDataLength[loop.index-1] }})</p>
+                            <a href="/module/{{ value.getId() }}" class="btn btn-dark">Details</a>
                         </div>
                     {% endif %}
                 </div>
@@ -60,7 +60,7 @@
                     <div class="row row-cols-8 g-3">
                         {% for key, value in datas %}
                             <div class="col">
-                                <div class="p-4 border bg-dark" style="border-radius: 10px;">{{ value.getName() }}</div>
+                                <div class="p-4 border bg-dark" style="border-radius: 10px;">{{ value.getId() }}</div>
                             </div>
                         {% endfor %}
                     </div>

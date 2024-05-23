@@ -31,10 +31,16 @@
                 {% endif %}
 
                 {% if datas is not empty %}
-                    <div class="row row-cols-8 g-3">
+                    <div class="row row-cols-6 g-2">
                         {% for key, value in datas %}
-                            <div class="col">
-                                <div class="p-4 border bg-dark" style="border-radius: 10px;">{{ value.getName() }}</div>
+                            <div class="col" style="width:auto">
+                                <div class="p-3 border bg-dark" style="border-radius: 5px;">
+                                    ID : {{ value.getId() }}
+                                    <hr>
+                                    TYPE : {{ value.getType() }}
+                                    <hr>
+                                    Value : {{ value.getValeur() }}
+                                </div>
                             </div>
                         {% endfor %}
                     </div>

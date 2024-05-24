@@ -40,6 +40,8 @@
                                     TYPE : {{ value.getType() }}
                                     <hr>
                                     Value : {{ value.getValeur() }}
+                                    <hr>
+                                    CreatedAt : {{ value.createdAt|date('Y-m-d H:i:s') }}
                                 </div>
                             </div>
                         {% endfor %}

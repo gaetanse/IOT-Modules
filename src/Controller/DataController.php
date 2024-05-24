@@ -10,7 +10,7 @@ use App\Entity\Data;
 class DataController extends AbstractController
 {
     #[Route('/datas', name: 'datas')]
-    public function number(EntityManagerInterface $entityManager): Response
+    public function get_all_data(EntityManagerInterface $entityManager): Response
     {
 
         $datas = $entityManager->getRepository(Data::class)->findAll();

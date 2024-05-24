@@ -7,6 +7,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Module;
 use App\Entity\Data;
+use App\Entity\History;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -31,6 +32,7 @@ final class TestHandler
             $data = new Data();
             $data->setValeur($number);
             $data->setType($modules[$numberModule]->getId());
+            $data->setCreatedAt(new \DateTime());
 
             if($number % 2 !== 0)
             {
@@ -40,8 +42,24 @@ final class TestHandler
                 $modules[$numberModule]->setIsDown(false);
             }
 
+            $modules[$numberModule]->setModifyAt(new \DateTime());
+
             $this->entityManager->persist($modules[$numberModule]);
             $this->entityManager->persist($data);
+            $this->entityManager->flush();
+
+            $history1 = new History();
+            $history1->setDate(new \DateTime());
+            $history1->setLabel("Data created !");
+            $history1->setName($modules[$numberModule]->getName());
+            $this->entityManager->persist($history1);
+            $this->entityManager->flush();
+
+            $history2 = new History();
+            $history2->setDate(new \DateTime());
+            $history2->setLabel("Module modified !");
+            $history2->setName($modules[$numberModule]->getName());
+            $this->entityManager->persist($history2);
             $this->entityManager->flush();
         }
         else{

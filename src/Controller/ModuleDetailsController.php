@@ -11,7 +11,7 @@ use App\Entity\Data;
 class ModuleDetailsController extends AbstractController
 {
     #[Route('/module/{id}', name: 'module details')]
-    public function number(EntityManagerInterface $entityManager, $id): Response
+    public function get_by_id_module(EntityManagerInterface $entityManager, $id): Response
     {
 
         $module = $entityManager->getRepository(Module::class)->findById($id);

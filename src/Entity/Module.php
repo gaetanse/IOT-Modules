@@ -18,6 +18,12 @@ class Module
 
     #[ORM\Column]
     private ?bool $isDown = true;
+    
+    #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private \DateTimeInterface $createdAt;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $modifyAt = null;
 
     public function getId(): ?int
     {
@@ -44,6 +50,30 @@ class Module
     public function setIsDown(bool $isDown): static
     {
         $this->isDown = $isDown;
+
+        return $this;
+    }
+    
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getModifyAt(): ?\DateTimeInterface
+    {
+        return $this->modifyAt;
+    }
+
+    public function setModifyAt(?\DateTimeInterface $modifyAt): self
+    {
+        $this->modifyAt = $modifyAt;
 
         return $this;
     }

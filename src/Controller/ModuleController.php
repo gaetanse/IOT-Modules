@@ -11,7 +11,7 @@ use App\Entity\Data;
 class ModuleController extends AbstractController
 {
     #[Route('/modules', name: 'modules')]
-    public function number(EntityManagerInterface $entityManager): Response
+    public function get_all_module(EntityManagerInterface $entityManager): Response
     {
 
         $modules = $entityManager->getRepository(Module::class)->findAll();

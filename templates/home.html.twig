@@ -60,7 +60,10 @@
                     <div class="row row-cols-8 g-3">
                         {% for key, value in datas %}
                             <div class="col">
-                                <div class="p-4 border bg-dark" style="border-radius: 10px;">{{ value.getId() }}</div>
+                                <div class="p-4 border bg-dark" style="border-radius: 10px;">
+                                    {{ value.getId() }}
+                                    <a href="/data/{{ value.getId() }}" class="btn btn-light">Details</a>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>

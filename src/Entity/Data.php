@@ -19,6 +19,9 @@ class Data
     #[ORM\Column]
     private ?int $type = null;
 
+    #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private \DateTimeInterface $createdAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,17 @@ class Data
     public function setType(int $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
